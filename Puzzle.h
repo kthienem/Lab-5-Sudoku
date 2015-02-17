@@ -18,6 +18,5 @@ Puzzle::Puzzle()
     }
   }
 }
-}
 
 #endif
