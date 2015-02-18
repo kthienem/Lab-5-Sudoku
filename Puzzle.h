@@ -12,6 +12,8 @@ class Puzzle{
 
 Puzzle::Puzzle()
 {
+  vec<T> tempVec;
+ 
   for(int i = 0; i < 9; i++){
     for(int j = 0; i < 9; i++){
       puzzleBoard.insert(puzzleBoard[i][j], 0);
