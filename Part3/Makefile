@@ -1,5 +1,5 @@
 CMP = g++
-MAIN = mainPart2
+MAIN = mainPart3
 EXEC = $(MAIN)
 
 $(EXEC): $(MAIN).o
