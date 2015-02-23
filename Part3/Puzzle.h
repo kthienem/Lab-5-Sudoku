@@ -81,10 +81,13 @@ void Puzzle<T>::play()
 
     if((row > 9) || (row < 1)){//checks if the row number is between 1 and 9
       cout << "That is not a valid position." << endl;
+    }
     else if((column > 9) || (column < 1)){//checks if the column number is between 1 and 9
       cout << "That is not a valid position." << endl;
+    }
     else if((choice > 9) || (choice < 1)){//checks if the input is between 1 and 9
       cout << "That is not a valid input." << endl;
+    }
     else if((originalBoard[row-1][column-1]!=0) || (isValid(row-1, column-1, choice) == 0)){//checks that the position is not a number set from the original board and that the number is a valid placement
       cout << "That is not a valid placement." << endl;
     }
@@ -97,40 +100,39 @@ void Puzzle<T>::play()
 
 template <typename T>
 int Puzzle<T>::isValid(int row, int column, int choice)
-{
+{//function to check if a number placement is valid
   
-  for(int i = 0; i < 9; i++){
+  for(int i = 0; i < 9; i++){//checks if the user inputed number does not occur anywhere else in the row
     if(puzzleBoard[row][i] == choice) return 0;
   }
 
-  for(int j = 0; j < 9; j++){
+  for(int j = 0; j < 9; j++){//checks if the user inputed number does not occur anywhere else in the row 
     if(puzzleBoard[j][column] == choice) return 0;
   }
 
+  //integer division returns a number that corresponds to which minigrid the cell is in
+  //multiplying by 3 then gets the first row or column number of that minigrid
   int colRange = (column/3)*3;
   int rowRange = (row/3)*3;
 
-  for(int k = colRange; k < colRange+3; k++){
+  for(int k = colRange; k < colRange+3; k++){//goes from previous computed value to 2 greater than it, e.g. 6 to 8
     for(int l = rowRange; l < rowRange+3; l++){
       if(puzzleBoard[l][k] == choice) return 0;
     }
   }
-
+//if there is no conflict with the number and position return a 1
   return 1;
 }
 
 template <typename T>
 int Puzzle<T>::isSolved()
-{
-  for(int i = 0; i < 9; i++){
+{//determines if the puzzle has been solved
+  for(int i = 0; i < 9; i++){//loops through 9x9 grid
     for(int j = 0; j < 9; j++){
-      if(puzzleBoard[i][j] != 0){
-        if(isValid(i, j, puzzleBoard[i][j]) == 0) return 0;
-      }
-      else return 0;
+      if(puzzleBoard[i][j] == 0) return 0; //if there is a zero in the cell return a 0 for not solved
     }
   }
 
-  return 1;
+  return 1;//return a 1 if the puzzle is solved
 }
 #endif
