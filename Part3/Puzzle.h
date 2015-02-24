@@ -95,6 +95,7 @@ void Puzzle<T>::play()
       puzzleBoard[row-1][column-1] = choice;
     }
   }
+  print(); //print the solved puzzle
   cout << "You have solved the puzzle." << endl;//tells teh user they have solved the puzzle at the end
 }
 

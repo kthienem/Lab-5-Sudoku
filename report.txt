@@ -1,0 +1,56 @@
+Kristopher Thieneman, Lab 5
+Part 1:
+https://github.com/kthienem/Lab-5-Sudoku
+
+User's Perspective:
+The program begins by displaying the puzzle to the user. It then asks the user
+for the row and column of the cell that they want to change and also what number
+they want to put in the cell. If the placement is valid then it changes the board
+and displays the changed board to the user then prompts them to make another
+input. If it is not a valid input then a message is displayed to the user and the
+board is printed again asking for another input.
+
+Programmer's Perspective:
+The driver begins by instantiating an object of type Puzzle<int> and then calls
+the function to play the game. This function is a while loop that continues until
+the puzzle solved. For each loop through it first prints the board. Next it takes
+in the user's input for the row and column of the cell and then the number to be
+inputed. After these options are entered it checks the validity of the input. It
+first checks that the row, column, and choice are all between 1 and 9 to see if
+what the user has inputted is valid. It then checks if the given cell position
+is a position that contains a number from the original board. Because the
+original numbers cannot be changed it does not allow the user to make a change
+to these cells. Finally it calls a function to make sure that the number they
+are placing does not appear in the same row, column, or mini grid. If the input
+passes all of these checks then the user's input is entered into the given cell
+and the loop repeats itself always printing the puzzle at the beginning. Because
+the program does not allow the user to place a number when there is a conflict
+the function to check if the puzzle has been solved simply goes through each
+position on the grid and checks that there are no remaining zeros. If there are
+then the puzzle has not been solved. Once this function returns a 1 to indicate
+that the puzzle has been solved it exits the while loop. It then displays the
+solved puzzle and tells the user that they have solved it.
+
+Output Verification:
+I verified the output of the program by playing through a game of sudoku using
+it. I checked that it did not allow me to place numbers where there were
+conflicts or change numbers that existed in the final puzzle. I also solved a
+puzzle entirely to check that the isSolved() function worked properly.
+
+Worked Well/ Didn't Work Well:
+I think the input checks on the board were implemented well. The integer division
+for checking the mini grid was tricky to figure out but provided a good way to
+figure out which mini grid you wanted to check. This worked by dividing the row
+or column number by three. Becuase integer division rounds down you would always
+end up with a 0, 1, or 2 which correspond to the first second, or third mini
+grid respectively. Then multiplying this number by three gave you the number
+of the first row or column of that mini grid, 0, 3, or 6. Then checking from
+those numbers to two greater than that insured that you only checked that mini
+grid and not anything else.
+
+The check for whether or not the puzzle was solved was a fairly easy check.
+Becuase the program is already checking if the number placement is valid you
+know that the board will never have conflicting numbers in rows, columns, or mini
+grids. Becuase of this you will know the board has been solved when there are no
+blank spaces remaining so the it simply checks if there are any zeros remaining
+on the board. If there are non left then the puzzle has been solved.
